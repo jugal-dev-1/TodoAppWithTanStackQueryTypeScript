@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { addTodo, deleteTodo, fetchTodos, toggleTodo } from '../api/todoApi';
+import { addTodo, deleteTodo, editTodo, fetchTodos, toggleTodo } from '../api/todoApi';
 
 // Query key = the "name" of this cached data.
 // Anything that uses ['todos'] shares the same cache, and invalidating
@@ -38,6 +38,14 @@ export function useDeleteTodo() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: deleteTodo,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: TODOS_KEY }),
+  });
+}
+
+export function useEditTodo() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: editTodo,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: TODOS_KEY }),
   });
 }

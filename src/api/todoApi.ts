@@ -39,3 +39,9 @@ export async function deleteTodo(id: string): Promise<void> {
   await delay();
   todos = todos.filter((t) => t.id !== id);
 }
+
+// mutationFn only receives one value, so id and title go in one object
+export async function editTodo({ id, title }: { id: string; title: string }): Promise<void> {
+  await delay();
+  todos = todos.map((t) => (t.id === id ? { ...t, title } : t));
+}
