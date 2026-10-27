@@ -5,13 +5,9 @@ export default function TodoStats({ todos }: { todos: Todo[] }) {
   const pending = todos.length - completed;
 
   return (
-    <div className="flex gap-2">
-      <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700">
-        {pending} pending
-      </span>
-      <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700">
-        {completed} completed
-      </span>
+    <div className="flex gap-2 text-sm font-medium">
+      <span className="border border-black bg-white px-2 py-0.5">{pending} left</span>
+      <span className="border border-black bg-brand px-2 py-0.5 text-white">{completed} done</span>
     </div>
   );
 }
